@@ -1,7 +1,8 @@
+// Création du serveur
 const http = require('http');
 const app = require('./app');
 
-//la fonction normalizePort renvoie un port valide
+// Renvoie d'un port valide
 const normalizePort = val => {
   const port = parseInt(val, 10);
 
@@ -13,10 +14,10 @@ const normalizePort = val => {
   }
   return false;
 };
-const port = normalizePort(process.env.PORT || '3000');
+const port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
-//la fonction errorHandler  recherche les différentes erreurs et les gère
+// Recherche des différentes erreurs et comment les gérer
 const errorHandler = error => {
   if (error.syscall !== 'listen') {
     throw error;
