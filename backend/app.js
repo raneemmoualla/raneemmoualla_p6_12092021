@@ -1,8 +1,8 @@
 const express = require('express');
+const helmet =require('helmet');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const path = require('path');
-require('dotenv').config({ path: process.cwd() + '/.env' });
 
 const sauceRoutes = require('./routes/sauce');
 const userRoutes = require('./routes/user');
@@ -17,6 +17,7 @@ mongoose.connect(`mongodb+srv://raneem:zeze1171981@cluster0.e8uzl.mongodb.net/my
 
 
     const app = express();
+    app.use(helmet());
 
     // Définition de headers pour éviters les erreurs de CORS
     app.use((req, res, next) => {
