@@ -9,7 +9,10 @@ exports.signup = (req, res, next) => {
     // Hash du mot de passe avec bcrypt
     bcrypt.hash(req.body.password, 10)
     .then(hash => {
-        
+        // Masquage de l'adresse mail
+        let buff = new Buffer(req.body.email);
+        let emailInbase64 = buff.toString('base64');
+
         // Création du nouvel utilisateur
         const user = new User({
             email: emailInbase64,
@@ -25,7 +28,10 @@ exports.signup = (req, res, next) => {
 
 // Création de connexion d'utilisateur enregistré (Post login)
 exports.login = (req, res, next) => {
-   
+    // Masquage de l'adresse mail
+    let buff = new Buffer(req.body.email);
+    let emailInbase64 = buff.toString('base64');
+
     // Recherche d'un utilisateur dans la base de données
     User.findOne({ email: emailInbase64 })
     .then(user => {
