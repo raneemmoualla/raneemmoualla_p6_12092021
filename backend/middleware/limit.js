@@ -1,7 +1,9 @@
-const rateLimit = require("express-rate-limit");
+const rateLimit = require("express-rate-limit")
 
 const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 5 // limit each IP to 5 requests per windowMs
-});
-module.exports = {limiter};
+    windowMs: 5 * 60 * 1000,
+    max: 3,
+    message: "Trop de tentatives de connexion. Compte bloqué pour 5 minutes"
+})
+
+module.exports = { limiter }
