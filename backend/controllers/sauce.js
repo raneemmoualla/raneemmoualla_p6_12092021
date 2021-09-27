@@ -1,5 +1,6 @@
 const Sauce = require('../models/Sauce');
-const fs = require('fs');
+const fs = require('fs');        //nous donne accès aux fonctions pour modifier le système de fichiers,
+                                 // y compris aux fonctions permettant de supprimer les fichiers.
 
 // Logiques métiers pour les sauces
 // Lecture de toutes les sauces dans la base de données (Get)

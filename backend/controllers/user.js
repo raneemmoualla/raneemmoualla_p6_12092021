@@ -50,7 +50,7 @@ exports.login = (req, res, next) => {
                 // Création d'un token pour sécuriser le compte de l'utilisateur
                 token: jwt.sign(
                     { userId: user._id },
-                    'RANDOM_TOKEN_SECRET',
+                    'RANDOM_TOKEN_SECRET',//chaîne secrète de développement temporaire pour encoder notre token (à remplacer par une chaîne aléatoire beaucoup plus longue pour la production)
                     { expiresIn: '24h' }
                 )
             });
