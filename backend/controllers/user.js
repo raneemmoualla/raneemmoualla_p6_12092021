@@ -52,9 +52,7 @@ exports.login = (req, res, next) => {
                     { userId: user._id },
                     'RANDOM_TOKEN_SECRET',//chaîne secrète de développement temporaire pour encoder notre token (à remplacer par une chaîne aléatoire beaucoup plus longue pour la production)
                     { expiresIn: '24h' }
-                )
-            });
-        })
+                )}); })
         .catch(error => res.status(500).json({ error }));
     })
     .catch(error => res.status(500).json({ error }));
