@@ -2,10 +2,11 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 const User = require('../models/User');
-
+const userValidator = require('./password');
 // Logiques métiers pour les utilisateurs
 // Création de nouveaux utilisateurs (Post signup)
 exports.signup = (req, res, next) => {
+    if (userValidator.isGoodPassword(req.body.password)){
     // Hash du mot de passe avec bcrypt
     bcrypt.hash(req.body.password, 10)
     .then(hash => {
@@ -24,6 +25,11 @@ exports.signup = (req, res, next) => {
         .catch(error => res.status(400).json({ error }));
     })
     .catch(error => res.status(500).json({ error }));
+}else{
+    return res.status(404).json({ message: 'Le mot de passe doit contenir au moins un nombre, une minuscule, une majuscule et être composé de 6 caractères minimum !' });
+    console.log('success');
+
+  }
 };
 
 // Création de connexion d'utilisateur enregistré (Post login)
